@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Reviewer — Earth Science & Astronomy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --deep: #0d1f3c;
+    --mid: #1a3a5c;
+    --sky: #1e6fa8;
+    --blue: #3b9fdc;
+    --cyan: #64d2f7;
+    --gold: #f4c842;
+    --amber: #e8a020;
+    --coral: #f4845f;
+    --mint: #3ddcb0;
+    --white: #f0f6ff;
+    --muted: #8aacc8;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(100,210,247,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* STARFIELD */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 30%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(2px 2px at 42% 72%, rgba(100,210,247,0.5) 0%, transparent 100%),
+      radial-gradient(2px 2px at 78% 58%, rgba(100,210,247,0.4) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 70px 0 50px;
+    position: relative;
+  }
+
+  .hero-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 18px;
+    opacity: 0.85;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 7vw, 78px);
+    font-weight: 900;
+    line-height: 1.05;
+    background: linear-gradient(135deg, var(--white) 0%, var(--cyan) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+
+  .orbit-ring {
+    width: 120px; height: 120px;
+    border: 1.5px solid rgba(100,210,247,0.25);
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    position: relative;
+    animation: spin 18s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .orbit-ring::before {
+    content: '🌍';
+    font-size: 36px;
+    animation: counter-spin 18s linear infinite;
+  }
+  .orbit-ring::after {
+    content: '';
+    position: absolute;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    top: -5px; left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px var(--gold);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes counter-spin { to { transform: rotate(-360deg); } }
+
+  /* NAV */
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 50px;
+    backdrop-filter: blur(10px);
+  }
+  .toc-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .toc a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13.5px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: block;
+  }
+  .toc a:hover {
+    color: var(--cyan);
+    background: rgba(100,210,247,0.08);
+  }
+  .toc a span { margin-right: 6px; }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 60px 0 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-icon {
+    font-size: 32px;
+    filter: drop-shadow(0 0 12px rgba(100,210,247,0.5));
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 700;
+    color: var(--white);
+  }
+  .section-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  /* TOPIC HEADERS */
+  .topic {
+    margin-bottom: 40px;
+    scroll-margin-top: 30px;
+  }
+  .topic h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 3vw, 22px);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topic h3::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 22px;
+    background: linear-gradient(to bottom, var(--gold), var(--amber));
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .topic h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cyan);
+    margin: 18px 0 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .topic p {
+    color: rgba(240,246,255,0.82);
+    font-size: 14.5px;
+    margin-bottom: 10px;
+    line-height: 1.8;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 14px 0;
+    backdrop-filter: blur(6px);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 14px 0;
+  }
+
+  .mini-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+  .mini-card strong {
+    display: block;
+    color: var(--cyan);
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .mini-card span {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* FACT BOXES */
+  .fact-box {
+    background: linear-gradient(135deg, rgba(244,200,66,0.08), rgba(232,160,32,0.04));
+    border: 1px solid rgba(244,200,66,0.25);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 13.5px;
+    color: rgba(240,246,255,0.8);
+  }
+  .fact-box strong { color: var(--gold); }
+
+  .key-box {
+    background: linear-gradient(135deg, rgba(61,220,176,0.07), rgba(61,220,176,0.02));
+    border: 1px solid rgba(61,220,176,0.2);
+    border-left: 3px solid var(--mint);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 13.5px;
+    color: rgba(240,246,255,0.8);
+  }
+  .key-box strong { color: var(--mint); }
+
+  /* LISTS */
+  ul.sci-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  ul.sci-list li {
+    font-size: 14px;
+    color: rgba(240,246,255,0.8);
+    padding: 5px 0 5px 22px;
+    position: relative;
+    line-height: 1.7;
+  }
+  ul.sci-list li::before {
+    content: '›';
+    position: absolute;
+    left: 6px;
+    color: var(--cyan);
+    font-weight: 700;
+  }
+
+  /* TABLE */
+  .sci-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13.5px;
+  }
+  .sci-table th {
+    background: rgba(100,210,247,0.1);
+    color: var(--cyan);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .sci-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(100,210,247,0.07);
+    color: rgba(240,246,255,0.8);
+    vertical-align: top;
+  }
+  .sci-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 30px 0;
+  }
+
+  /* PROCESS STEPS */
+  .steps {
+    counter-reset: step;
+    margin: 14px 0;
+  }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+  .step-num {
+    counter-increment: step;
+    min-width: 30px; height: 30px;
+    background: linear-gradient(135deg, var(--sky), var(--blue));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+  .step-content { font-size: 14px; color: rgba(240,246,255,0.82); line-height: 1.75; }
+  .step-content strong { color: var(--white); }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    background: rgba(100,210,247,0.12);
+    border: 1px solid rgba(100,210,247,0.3);
+    color: var(--cyan);
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-family: 'Courier Prime', monospace;
+    letter-spacing: 1px;
+    margin: 2px 3px;
+  }
+
+  /* PLANET TABLE */
+  .planet-row td:first-child { color: var(--gold); font-weight: 600; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 50px 0 40px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .toc-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Complete Study Reviewer</div>
+    <div class="orbit-ring"></div>
+    <h1>Science<br>Earth & Astronomy</h1>
+    <p class="hero-sub">A comprehensive, detailed reviewer covering all topics in Earth Science and Astronomy</p>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-title">📋 Table of Contents</div>
+    <div class="toc-grid">
+      <a href="#rocks"><span>🪨</span>Rocks & Minerals</a>
+      <a href="#fossils"><span>🦕</span>Fossils</a>
+      <a href="#plate"><span>🌐</span>Plate Tectonics</a>
+      <a href="#air"><span>🌦️</span>Air, Weather & Climate</a>
+      <a href="#water"><span>💧</span>Water on Earth</a>
+      <a href="#energy"><span>⚡</span>Energy Resources</a>
+      <a href="#origins"><span>🔭</span>Origins of the Universe</a>
+      <a href="#stars"><span>⭐</span>Stars, Blackholes & Galaxy</a>
+      <a href="#solar"><span>☀️</span>The Solar System</a>
+      <a href="#rotation"><span>🔄</span>Rotation & Revolution</a>
+      <a href="#comets"><span>☄️</span>Comets & Asteroids</a>
+      <a href="#moon"><span>🌙</span>Phases of the Moon</a>
+      <a href="#eclipses"><span>🌑</span>Solar & Lunar Eclipses</a>
+    </div>
+  </div>
+
+  <!-- ======================== EARTH SCIENCE ======================== -->
+  <div class="section-header">
+    <div class="section-icon">🌍</div>
+    <div>
+      <div class="section-tag">Part One</div>
+      <h2>Earth Science</h2>
+    </div>
+  </div>
+
+  <!-- ROCKS & MINERALS -->
+  <div class="topic" id="rocks">
+    <h3>Rocks and Minerals</h3>
+
+    <h4>What is a Mineral?</h4>
+    <p>A mineral is a naturally occurring, inorganic solid with a definite chemical composition and a crystalline structure. All minerals must satisfy five criteria: naturally occurring, inorganic (not made by living organisms), solid, definite chemical composition, and crystalline atomic structure.</p>
+
+    <div class="key-box"><strong>Key Properties Used to Identify Minerals:</strong> Color, Luster (metallic vs. non-metallic), Hardness (Mohs scale), Cleavage or Fracture, Streak (color of powder), Specific Gravity, Crystal Form, and Special Properties (magnetism, fluorescence, taste).</div>
+
+    <h4>Mohs Hardness Scale</h4>
+    <div class="card">
+      <table class="sci-table">
+        <tr><th>Hardness</th><th>Mineral</th><th>Common Test</th></tr>
+        <tr><td>1</td><td>Talc</td><td>Scratched by fingernail</td></tr>
+        <tr><td>2</td><td>Gypsum</td><td>Scratched by fingernail</td></tr>
+        <tr><td>3</td><td>Calcite</td><td>Scratched by copper coin</td></tr>
+        <tr><td>4</td><td>Fluorite</td><td>Scratched by steel knife</td></tr>
+        <tr><td>5</td><td>Apatite</td><td>Scratched by steel knife</td></tr>
+        <tr><td>6</td><td>Feldspar</td><td>Scratches glass</td></tr>
+        <tr><td>7</td><td>Quartz</td><td>Scratches glass easily</td></tr>
+        <tr><td>8</td><td>Topaz</td><td>Scratches quartz</td></tr>
+        <tr><td>9</td><td>Corundum</td><td>Scratches topaz</td></tr>
+        <tr><td>10</td><td>Diamond</td><td>Scratches everything</td></tr>
+      </table>
+    </div>
+
+    <h4>The Three Rock Types</h4>
+    <div class="card-grid">
+      <div class="mini-card">
+        <strong>🔥 Igneous Rock</strong>
+        <span>Formed from cooled magma or lava. Intrusive (slow cooling, large crystals): granite. Extrusive (fast cooling, small or no crystals): basalt, obsidian, pumice.</span>
+      </div>
+      <div class="mini-card">
+        <strong>📚 Sedimentary Rock</strong>
+        <span>Formed from compacted and cemented sediments. Clastic: sandstone, shale. Chemical: limestone, rock salt. Organic: coal, chalk. Contains fossils.</span>
+      </div>
+      <div class="mini-card">
+        <strong>♨️ Metamorphic Rock</strong>
+        <span>Formed when existing rocks are changed by heat and/or pressure. Foliated (layered): slate, schist, gneiss. Non-foliated: marble (from limestone), quartzite (from sandstone).</span>
+      </div>
+    </div>
+
+    <h4>The Rock Cycle</h4>
+    <p>The rock cycle is the continuous process by which rocks are created, changed, and destroyed. No rock type is permanent — all rocks can be transformed into another type given enough time and the right conditions.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Magma cools</strong> → Igneous rock forms</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Weathering & erosion</strong> break down igneous rock → sediments</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Compaction & cementation</strong> of sediments → Sedimentary rock</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Heat and pressure</strong> on any rock → Metamorphic rock</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Melting</strong> of any rock → Magma (cycle repeats)</div></div>
+    </div>
+
+    <h4>Earth's Layers</h4>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Crust</strong><span>Outermost layer; 5–70 km thick. Oceanic crust = basalt (denser). Continental crust = granite (less dense).</span></div>
+      <div class="mini-card"><strong>Mantle</strong><span>~2,900 km thick. Mostly solid silicate rock, but the upper part (asthenosphere) flows slowly like putty. Source of magma.</span></div>
+      <div class="mini-card"><strong>Outer Core</strong><span>Liquid iron and nickel. Generates Earth's magnetic field through convection currents.</span></div>
+      <div class="mini-card"><strong>Inner Core</strong><span>Solid iron and nickel. ~1,200 km radius. Despite extreme heat, immense pressure keeps it solid.</span></div>
+    </div>
+
+    <div class="fact-box"><strong>⭐ Did You Know?</strong> Earth's inner core temperature reaches approximately 5,000–6,000°C — similar to the surface of the Sun!</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- FOSSILS -->
+  <div class="topic" id="fossils">
+    <h3>Fossils</h3>
+
+    <p>A fossil is the preserved remains or trace of an organism that lived in the past. Fossils are typically found in sedimentary rock because these rocks form through the gradual layering of sediments, which can trap and preserve organisms.</p>
+
+    <h4>Types of Fossils</h4>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Body Fossils</strong><span>Actual remains: bones, shells, teeth, or soft tissue (rare). Most common type.</span></div>
+      <div class="mini-card"><strong>Trace Fossils</strong><span>Evidence of activity: footprints, burrows, feeding marks, coprolites (fossilized dung).</span></div>
+      <div class="mini-card"><strong>Mold & Cast</strong><span>Mold = impression left in rock. Cast = mold filled with minerals forming a 3D replica.</span></div>
+      <div class="mini-card"><strong>Petrified Fossils</strong><span>Original material replaced by minerals. Example: petrified wood, where silica replaces wood cells.</span></div>
+      <div class="mini-card"><strong>Carbon Film</strong><span>Thin carbon residue left after organic matter decays. Preserves leaves, fish, and soft tissue outlines.</span></div>
+      <div class="mini-card"><strong>Preserved in Amber</strong><span>Organisms trapped in tree resin that hardens. Insects, small animals perfectly preserved.</span></div>
+    </div>
+
+    <h4>How Fossilization Occurs</h4>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Death</strong> — Organism dies, preferably near water</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Quick burial</strong> — Covered by sediment before scavengers or decomposition destroys it</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Permineralization</strong> — Minerals in groundwater fill pores in bones and shells</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Compaction</strong> — Sediment layers build up, turning to rock over millions of years</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Exposure</strong> — Erosion or geological activity brings fossils to the surface</div></div>
+    </div>
+
+    <h4>Fossil Record & Geologic Time</h4>
+    <p>The fossil record is the collection of all known fossils arranged in the order of geological time. It gives us a history of life on Earth and is organized by the <strong>Geologic Time Scale</strong> — eons, eras, periods, and epochs. Older fossils are found in deeper rock layers (the <strong>Law of Superposition</strong>). Index fossils are fossils of organisms that lived for a short time but were widespread — they help scientists date rock layers precisely.</p>
+
+    <div class="key-box"><strong>Law of Superposition:</strong> In undisturbed rock layers, the oldest layers are at the bottom and the youngest are at the top. This principle is fundamental to relative age dating.</div>
+
+    <h4>Radioactive Dating</h4>
+    <p>Absolute dating uses the decay rates of radioactive isotopes (half-lives) to determine the actual age of fossils and rocks. <strong>Carbon-14</strong> is used for materials up to ~50,000 years old. <strong>Uranium-238</strong> and <strong>Potassium-40</strong> are used for much older materials (millions to billions of years).</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PLATE TECTONICS -->
+  <div class="topic" id="plate">
+    <h3>Plate Tectonics</h3>
+
+    <p>The theory of plate tectonics states that Earth's lithosphere (crust + upper mantle) is broken into large pieces called tectonic plates that float on the semi-fluid asthenosphere and move slowly over time. This theory unified many geological observations including continental drift, seafloor spreading, earthquakes, and volcanoes.</p>
+
+    <h4>Evidence for Continental Drift (Alfred Wegener, 1912)</h4>
+    <ul class="sci-list">
+      <li>The continents fit together like puzzle pieces (especially South America and Africa)</li>
+      <li>Same fossils found on different continents separated by ocean (e.g., Glossopteris fern)</li>
+      <li>Matching rock formations and mountain ranges across ocean basins</li>
+      <li>Evidence of ancient glaciation in tropical regions (Gondwana)</li>
+    </ul>
+
+    <h4>Seafloor Spreading</h4>
+    <p>Harry Hess (1960s) proposed that new oceanic crust is created at mid-ocean ridges where magma rises, spreads, and solidifies. This process pushes older crust away. Evidence: magnetic stripes in seafloor rocks showing alternating magnetic polarity, youngest rocks at ridges, oldest at trenches.</p>
+
+    <h4>Types of Plate Boundaries</h4>
+    <div class="card">
+      <table class="sci-table">
+        <tr><th>Boundary Type</th><th>Movement</th><th>What Happens</th><th>Examples</th></tr>
+        <tr><td><span class="badge">Divergent</span></td><td>Plates move apart</td><td>Seafloor spreading, rift valleys, new ocean floor created</td><td>Mid-Atlantic Ridge, East African Rift</td></tr>
+        <tr><td><span class="badge">Convergent</span></td><td>Plates move together</td><td>Subduction (oceanic under continental), mountain building, volcanic arcs, deep trenches</td><td>Andes, Himalayas, Japan Trench</td></tr>
+        <tr><td><span class="badge">Transform</span></td><td>Plates slide past each other</td><td>Earthquakes, no crust created or destroyed</td><td>San Andreas Fault (California)</td></tr>
+      </table>
+    </div>
+
+    <h4>Earthquakes</h4>
+    <p>Earthquakes occur when stress built up along faults is suddenly released as seismic waves. The <strong>focus (hypocenter)</strong> is the underground point where the earthquake originates. The <strong>epicenter</strong> is the point on the surface directly above the focus.</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>P-Waves (Primary)</strong><span>Compressional waves, travel through solids, liquids, and gases. First to arrive. Push-pull motion.</span></div>
+      <div class="mini-card"><strong>S-Waves (Secondary)</strong><span>Shear waves, travel through solids only. Arrive after P-waves. Side-to-side motion.</span></div>
+      <div class="mini-card"><strong>Surface Waves</strong><span>Travel along Earth's surface. Slowest but cause most damage. Two types: Love waves and Rayleigh waves.</span></div>
+      <div class="mini-card"><strong>Richter Scale</strong><span>Logarithmic scale measuring earthquake magnitude. Each whole number = 10× amplitude increase, ~31.6× energy release.</span></div>
+    </div>
+
+    <h4>Volcanoes</h4>
+    <p>Volcanoes form where magma reaches the surface. Found at plate boundaries and over hot spots (e.g., Hawaii). Types:</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Shield Volcano</strong><span>Broad, gently sloping. Low-viscosity basaltic lava. Quiet eruptions. Example: Mauna Loa, Hawaii.</span></div>
+      <div class="mini-card"><strong>Composite/Stratovolcano</strong><span>Steep, layered. High-viscosity, explosive eruptions. Example: Mt. Fuji, Mt. St. Helens.</span></div>
+      <div class="mini-card"><strong>Cinder Cone</strong><span>Smallest, steep. Made of volcanic cinders. Short, explosive eruptions. Example: Paricutin, Mexico.</span></div>
+    </div>
+
+    <div class="fact-box"><strong>⭐ The Ring of Fire</strong> is a horseshoe-shaped zone around the Pacific Ocean where ~90% of the world's earthquakes and ~75% of all volcanoes are found — all due to active plate boundaries.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- AIR, WEATHER, CLIMATE -->
+  <div class="topic" id="air">
+    <h3>Air, Weather, and Climate</h3>
+
+    <h4>Earth's Atmosphere</h4>
+    <p>The atmosphere is a thin layer of gases surrounding Earth held in place by gravity. It protects life by absorbing UV radiation, regulating temperature, and enabling weather.</p>
+    <div class="card">
+      <table class="sci-table">
+        <tr><th>Layer</th><th>Altitude</th><th>Key Features</th></tr>
+        <tr><td>Troposphere</td><td>0–12 km</td><td>Where weather occurs; temperature decreases with altitude; contains 75–80% of atmosphere's mass</td></tr>
+        <tr><td>Stratosphere</td><td>12–50 km</td><td>Contains ozone layer (absorbs UV); temperature increases with altitude; where jets fly</td></tr>
+        <tr><td>Mesosphere</td><td>50–80 km</td><td>Coldest layer (−90°C); meteors burn up here</td></tr>
+        <tr><td>Thermosphere</td><td>80–700 km</td><td>Very high temps (up to 2,000°C); auroras occur here; ISS orbits here</td></tr>
+        <tr><td>Exosphere</td><td>700+ km</td><td>Outermost; merges with space; satellites orbit here</td></tr>
+      </table>
+    </div>
+
+    <h4>Composition of Air</h4>
+    <p>Dry air is approximately: <strong>78% Nitrogen (N₂)</strong>, <strong>21% Oxygen (O₂)</strong>, <strong>0.9% Argon (Ar)</strong>, <strong>0.04% Carbon Dioxide (CO₂)</strong>, plus trace gases.</p>
+
+    <h4>Weather vs. Climate</h4>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Weather</strong><span>Short-term atmospheric conditions at a specific place and time (temperature, humidity, precipitation, wind). Changes hour to hour.</span></div>
+      <div class="mini-card"><strong>Climate</strong><span>Average weather patterns of a region over a long period (30+ years). Determined by latitude, altitude, proximity to water, ocean currents.</span></div>
+    </div>
+
+    <h4>The Water Cycle (Hydrological Cycle)</h4>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Evaporation & Transpiration</strong> — Water from oceans, lakes, and plants enters the atmosphere as vapor</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Condensation</strong> — Water vapor cools and forms clouds (liquid droplets or ice crystals)</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Precipitation</strong> — Water falls as rain, snow, sleet, or hail</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Collection & Runoff</strong> — Water collects in oceans, rivers, groundwater; cycle repeats</div></div>
+    </div>
+
+    <h4>Types of Clouds</h4>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Cumulus</strong><span>Puffy, flat-bottomed. Fair weather. If they grow tall → Cumulonimbus (thunderstorms).</span></div>
+      <div class="mini-card"><strong>Stratus</strong><span>Flat, layered, gray. Cover sky like a blanket. Drizzle or light rain. Low altitude.</span></div>
+      <div class="mini-card"><strong>Cirrus</strong><span>Wispy, feathery, high altitude. Made of ice crystals. Indicate fair weather or approaching front.</span></div>
+      <div class="mini-card"><strong>Nimbostratus</strong><span>Dark, thick stratus clouds producing continuous rain or snow. Cover entire sky.</span></div>
+    </div>
+
+    <h4>Air Masses and Fronts</h4>
+    <p>An <strong>air mass</strong> is a large body of air with uniform temperature and humidity. When two different air masses meet, a <strong>front</strong> forms:</p>
+    <ul class="sci-list">
+      <li><strong>Cold Front:</strong> Cold air pushes under warm air → sudden storms, then cooler weather</li>
+      <li><strong>Warm Front:</strong> Warm air slides over cold air → gradual cloud thickening, light rain</li>
+      <li><strong>Stationary Front:</strong> Two air masses stall → prolonged clouds and precipitation</li>
+      <li><strong>Occluded Front:</strong> Cold front catches warm front → complex weather</li>
+    </ul>
+
+    <h4>The Greenhouse Effect & Climate Change</h4>
+    <p>The greenhouse effect is a natural process where greenhouse gases (CO₂, methane, water vapor, nitrous oxide) trap heat from the Sun in Earth's atmosphere, keeping the planet warm enough to support life (~15°C average). Human activities increase CO₂ and methane, enhancing this effect and causing global warming.</p>
+    <div class="key-box"><strong>Effects of Climate Change:</strong> Rising sea levels, melting glaciers and ice caps, more frequent extreme weather events, shifts in ecosystems and habitats, ocean acidification from absorbed CO₂, and disruption of agricultural patterns.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WATER ON EARTH -->
+  <div class="topic" id="water">
+    <h3>Water on Earth</h3>
+
+    <p>About 71% of Earth's surface is covered by water. Of all water on Earth: ~97.5% is saltwater (oceans), ~2.5% is freshwater. Of that freshwater, ~69% is frozen in glaciers and ice caps, ~30% is groundwater, and less than 1% is surface freshwater (rivers, lakes).</p>
+
+    <h4>The Hydrosphere</h4>
+    <p>The hydrosphere includes all water on Earth: oceans, rivers, lakes, groundwater, glaciers, ice sheets, and water in the atmosphere. It constantly interacts with the lithosphere, atmosphere, and biosphere.</p>
+
+    <h4>Ocean Features</h4>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Continental Shelf</strong><span>Shallow, gradually sloping extension of continents under the ocean. Rich in marine life and resources.</span></div>
+      <div class="mini-card"><strong>Continental Slope</strong><span>Steeper drop-off at the edge of the continental shelf. Leads to the deep ocean floor.</span></div>
+      <div class="mini-card"><strong>Abyssal Plain</strong><span>Flat, deep ocean floor. 4,000–6,000 m deep. Coldest, darkest part of ocean.</span></div>
+      <div class="mini-card"><strong>Ocean Trenches</strong><span>Deepest parts of ocean. Formed by subduction. Mariana Trench: ~11,000 m — deepest point on Earth.</span></div>
+      <div class="mini-card"><strong>Mid-Ocean Ridge</strong><span>Underwater mountain range where seafloor spreading occurs. Longest mountain range on Earth.</span></div>
+    </div>
+
+    <h4>Ocean Currents</h4>
+    <p><strong>Surface currents</strong> are driven by wind patterns and Earth's rotation (Coriolis effect). They form large circular patterns called gyres. They significantly affect regional climates — warm currents warm coastal areas; cold currents cool them.</p>
+    <p><strong>Deep ocean currents (thermohaline circulation)</strong> are driven by differences in water density due to temperature and salinity. Known as the "Global Ocean Conveyor Belt," this slow circulation distributes heat and nutrients throughout the world's oceans.</p>
+
+    <h4>Groundwater & Watersheds</h4>
+    <p>Groundwater fills pores in soil and rock below the water table. An <strong>aquifer</strong> is a layer of permeable rock that stores and transmits groundwater. A <strong>watershed</strong> (drainage basin) is an area of land that drains into a common body of water. Proper watershed management is critical for freshwater supply.</p>
+
+    <div class="fact-box"><strong>⭐ Did You Know?</strong> The world's largest aquifer is the Ogallala Aquifer in the United States, stretching under 8 states and providing water to ~30% of all groundwater used for irrigation in the US.</div>
+
+    <h4>Erosion and Deposition by Water</h4>
+    <p>Moving water is the primary agent of erosion on Earth's surface. Rivers carve valleys, gorges, and canyons. Water deposits sediment to form deltas, alluvial fans, floodplains, and sandbars. The Grand Canyon was carved by the Colorado River over ~5–6 million years.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ENERGY RESOURCES -->
+  <div class="topic" id="energy">
+    <h3>Energy Resources</h3>
+
+    <h4>Non-Renewable Resources</h4>
+    <p>Non-renewable resources are formed over millions of years and cannot be replaced on a human timescale. Once used, they are gone.</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Coal</strong><span>Formed from ancient plant material. Burned for electricity and heat. Most carbon-intensive fuel. Produces CO₂, SO₂, and ash.</span></div>
+      <div class="mini-card"><strong>Petroleum (Oil)</strong><span>Formed from ancient marine organisms. Used for gasoline, diesel, plastics. Extracted by drilling. Transported via pipelines and tankers.</span></div>
+      <div class="mini-card"><strong>Natural Gas</strong><span>Primarily methane (CH₄). Cleaner-burning than coal and oil. Extracted via drilling; used for heating and electricity.</span></div>
+      <div class="mini-card"><strong>Nuclear Energy</strong><span>Fission of uranium-235 or plutonium-239 releases enormous heat to generate electricity. No CO₂ emissions; radioactive waste is a concern.</span></div>
+    </div>
+
+    <h4>Renewable Resources</h4>
+    <div class="card-grid">
+      <div class="mini-card"><strong>☀️ Solar</strong><span>Photovoltaic cells convert sunlight to electricity. Solar thermal systems use heat. Abundant, clean. Depends on sunlight availability.</span></div>
+      <div class="mini-card"><strong>💨 Wind</strong><span>Wind turbines convert kinetic energy of wind to electricity. Clean, renewable. Best in open plains and offshore. Depends on consistent wind.</span></div>
+      <div class="mini-card"><strong>💧 Hydroelectric</strong><span>Flowing water drives turbines. Large dams and run-of-river systems. Clean but disrupts river ecosystems and fish migration.</span></div>
+      <div class="mini-card"><strong>🌿 Biomass</strong><span>Burning organic material (wood, crops, waste). Can be carbon-neutral if sustainably managed. Also produces biofuels (ethanol, biodiesel).</span></div>
+      <div class="mini-card"><strong>🌋 Geothermal</strong><span>Heat from Earth's interior used for heating and electricity. Especially viable in volcanic regions (Iceland, Philippines).</span></div>
+      <div class="mini-card"><strong>🌊 Tidal/Wave</strong><span>Ocean tides and waves drive generators. Predictable but limited by geography. Still largely in development.</span></div>
+    </div>
+
+    <div class="key-box"><strong>Energy Transformation:</strong> Most power plants convert one form of energy to another. For example: Chemical energy (coal) → Heat energy → Kinetic energy (steam) → Electrical energy. The Law of Conservation of Energy states energy cannot be created or destroyed, only transformed.</div>
+  </div>
+
+  <!-- ======================== ASTRONOMY ======================== -->
+  <div class="section-header">
+    <div class="section-icon">🔭</div>
+    <div>
+      <div class="section-tag">Part Two</div>
+      <h2>Astronomy</h2>
+    </div>
+  </div>
+
+  <!-- ORIGINS OF THE UNIVERSE -->
+  <div class="topic" id="origins">
+    <h3>Origins of the Universe</h3>
+
+    <h4>The Big Bang Theory</h4>
+    <p>The Big Bang Theory is the prevailing cosmological model explaining the origin and evolution of the universe. It states that approximately <strong>13.8 billion years ago</strong>, the universe began from an extremely hot, dense singular point (singularity) and has been expanding and cooling ever since.</p>
+
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Singularity (t=0)</strong> — All matter, energy, space, and time compressed into a single point of infinite density</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Inflation (10⁻³⁶ – 10⁻³² seconds)</strong> — Universe expanded exponentially faster than light; temperature dropped dramatically</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Quark Era</strong> — Quarks and gluons form; universe is a quark-gluon plasma soup</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Hadron Era (1 second)</strong> — Quarks combine into protons and neutrons; matter-antimatter annihilation; slight matter surplus remains</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Nucleosynthesis (3 minutes)</strong> — Protons and neutrons fuse into hydrogen and helium nuclei</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><strong>Recombination (380,000 years)</strong> — Electrons combine with nuclei forming atoms; universe becomes transparent; Cosmic Microwave Background radiation released</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-content"><strong>First Stars & Galaxies (200–400 million years)</strong> — Gravity pulls matter into clumps; first stars ignite; heavy elements form in stellar cores</div></div>
+    </div>
+
+    <h4>Evidence for the Big Bang</h4>
+    <ul class="sci-list">
+      <li><strong>Hubble's Law (1929):</strong> Galaxies are moving away from us; the universe is expanding. Going backward in time implies everything was once together.</li>
+      <li><strong>Cosmic Microwave Background Radiation (CMB):</strong> Faint microwave radiation uniformly filling the universe — the "afterglow" of the Big Bang, discovered in 1965.</li>
+      <li><strong>Abundance of Light Elements:</strong> The universe's composition (~75% hydrogen, ~25% helium) matches Big Bang nucleosynthesis predictions.</li>
+      <li><strong>Large-scale structure of the universe:</strong> The distribution of galaxies and galaxy clusters matches Big Bang predictions.</li>
+    </ul>
+
+    <h4>Dark Matter & Dark Energy</h4>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Dark Matter (~27%)</strong><span>Invisible matter that doesn't interact with light. Detected through gravitational effects on visible matter and galaxies. Its nature is unknown.</span></div>
+      <div class="mini-card"><strong>Dark Energy (~68%)</strong><span>Mysterious energy driving the accelerating expansion of the universe. Identified in 1998. Ordinary matter is only ~5% of universe.</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STARS, BLACKHOLES, GALAXY -->
+  <div class="topic" id="stars">
+    <h3>Stars, Black Holes, and Galaxies</h3>
+
+    <h4>How Stars Form</h4>
+    <p>Stars form in giant clouds of gas and dust called <strong>nebulae</strong>. Gravity causes regions within a nebula to collapse into a <strong>protostar</strong>. When core temperature reaches ~10 million°C, nuclear fusion ignites — the star is born. It enters the <strong>Main Sequence</strong> stage, where it spends most of its life fusing hydrogen into helium.</p>
+
+    <h4>The Hertzsprung-Russell (H-R) Diagram</h4>
+    <p>The H-R diagram plots stars by luminosity (brightness) vs. surface temperature. Most stars fall along the <strong>Main Sequence</strong> (a diagonal band). Giants and supergiants are above it; white dwarfs are below.</p>
+
+    <h4>Stellar Classification by Temperature</h4>
+    <div class="card">
+      <table class="sci-table">
+        <tr><th>Class</th><th>Color</th><th>Temp (K)</th><th>Example</th></tr>
+        <tr><td>O</td><td>Blue</td><td>>30,000</td><td>Rigel (varies)</td></tr>
+        <tr><td>B</td><td>Blue-White</td><td>10,000–30,000</td><td>Spica</td></tr>
+        <tr><td>A</td><td>White</td><td>7,500–10,000</td><td>Sirius, Vega</td></tr>
+        <tr><td>F</td><td>Yellow-White</td><td>6,000–7,500</td><td>Polaris</td></tr>
+        <tr><td>G</td><td>Yellow</td><td>5,200–6,000</td><td>The Sun</td></tr>
+        <tr><td>K</td><td>Orange</td><td>3,700–5,200</td><td>Arcturus</td></tr>
+        <tr><td>M</td><td>Red</td><td>2,400–3,700</td><td>Betelgeuse, Proxima Centauri</td></tr>
+      </table>
+    </div>
+
+    <h4>Stellar Life Cycles</h4>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Low/Medium Mass Stars (like Sun)</strong><span>Main Sequence → Red Giant → Planetary Nebula → White Dwarf → (eventually) Black Dwarf</span></div>
+      <div class="mini-card"><strong>High Mass Stars</strong><span>Main Sequence → Red Supergiant → Supernova → Neutron Star or Black Hole (if mass >3× Sun)</span></div>
+    </div>
+
+    <h4>Supernovae</h4>
+    <p>A supernova is an enormous stellar explosion — the most energetic event in the universe (briefly outshining entire galaxies). They distribute heavy elements (iron, gold, uranium) throughout space — elements heavier than iron can only be created in supernovae. The remnant may become a neutron star or black hole.</p>
+
+    <h4>Black Holes</h4>
+    <p>A black hole is a region where gravity is so extreme that nothing — not even light — can escape the <strong>event horizon</strong> (boundary of no return). Black holes form when massive stars (>20× solar mass) collapse. Key terms:</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Event Horizon</strong><span>The "point of no return" boundary. Once crossed, escape is impossible — even for light.</span></div>
+      <div class="mini-card"><strong>Singularity</strong><span>The infinitely dense center of a black hole where known physics breaks down.</span></div>
+      <div class="mini-card"><strong>Schwarzschild Radius</strong><span>The radius at which an object's escape velocity equals the speed of light (defines event horizon size).</span></div>
+      <div class="mini-card"><strong>Hawking Radiation</strong><span>Theoretical radiation emitted near event horizon due to quantum effects; black holes slowly evaporate over eons.</span></div>
+      <div class="mini-card"><strong>Supermassive Black Holes</strong><span>Found at centers of most large galaxies. Milky Way's is Sagittarius A* (~4 million solar masses).</span></div>
+    </div>
+
+    <h4>Galaxies</h4>
+    <p>A galaxy is a gravitationally bound system of stars, stellar remnants, gas, dust, and dark matter. Types:</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Spiral</strong><span>Disk-shaped with spiral arms. Active star formation in arms. Example: Milky Way, Andromeda.</span></div>
+      <div class="mini-card"><strong>Elliptical</strong><span>Oval to spherical. Older stars, little gas or dust, minimal star formation. Can be enormous.</span></div>
+      <div class="mini-card"><strong>Irregular</strong><span>No defined shape. Often result of galaxy collisions. Example: Magellanic Clouds (Milky Way's satellite galaxies).</span></div>
+    </div>
+
+    <div class="fact-box"><strong>⭐ The Milky Way</strong> contains 100–400 billion stars, is about 100,000 light-years across, and our Solar System is located about 26,000 light-years from its center. The nearest large galaxy, Andromeda, is ~2.5 million light-years away and is on a collision course with the Milky Way (in ~4.5 billion years).</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- THE SOLAR SYSTEM -->
+  <div class="topic" id="solar">
+    <h3>The Solar System</h3>
+
+    <p>Our Solar System formed ~4.6 billion years ago from a collapsing cloud of gas and dust (the solar nebula). The Sun contains 99.86% of all the Solar System's mass.</p>
+
+    <h4>The Sun</h4>
+    <p>The Sun is a G-type main sequence star (~4.6 billion years old, halfway through its life). It fuses ~600 million tons of hydrogen into helium every second via <strong>nuclear fusion</strong> in its core, releasing energy as light and heat.</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Core</strong><span>Temperature ~15 million°C. Nuclear fusion occurs. Energy radiated outward.</span></div>
+      <div class="mini-card"><strong>Radiative Zone</strong><span>Energy moves as photons, bouncing for ~100,000 years to escape this layer.</span></div>
+      <div class="mini-card"><strong>Convective Zone</strong><span>Hot plasma rises, cools, sinks. Creates convection currents.</span></div>
+      <div class="mini-card"><strong>Photosphere</strong><span>Visible surface. ~5,500°C. Sunspots (cooler, darker regions) appear here.</span></div>
+      <div class="mini-card"><strong>Chromosphere</strong><span>Reddish layer above photosphere. Solar flares and prominences originate here.</span></div>
+      <div class="mini-card"><strong>Corona</strong><span>Outermost layer. Extremely hot (~1–3 million°C). Visible during total solar eclipses.</span></div>
+    </div>
+
+    <h4>The Eight Planets</h4>
+    <div class="card">
+      <table class="sci-table">
+        <tr><th>Planet</th><th>Type</th><th>Notable Facts</th></tr>
+        <tr class="planet-row"><td>Mercury</td><td>Terrestrial</td><td>Smallest planet, no atmosphere, extreme temperature swings (−180°C to 430°C)</td></tr>
+        <tr class="planet-row"><td>Venus</td><td>Terrestrial</td><td>Hottest planet (~465°C), thick CO₂ atmosphere, rotates retrograde (backward)</td></tr>
+        <tr class="planet-row"><td>Earth</td><td>Terrestrial</td><td>Only known planet with life, liquid water, and active plate tectonics</td></tr>
+        <tr class="planet-row"><td>Mars</td><td>Terrestrial</td><td>Red from iron oxide, Olympus Mons (tallest volcano in solar system), thin atmosphere</td></tr>
+        <tr class="planet-row"><td>Jupiter</td><td>Gas Giant</td><td>Largest planet, Great Red Spot (centuries-old storm), 95 known moons (including Io, Europa)</td></tr>
+        <tr class="planet-row"><td>Saturn</td><td>Gas Giant</td><td>Spectacular ring system (ice and rock), least dense planet (would float on water), 146 moons</td></tr>
+        <tr class="planet-row"><td>Uranus</td><td>Ice Giant</td><td>Rotates on its side (98° axial tilt), coldest planetary atmosphere (−224°C)</td></tr>
+        <tr class="planet-row"><td>Neptune</td><td>Ice Giant</td><td>Strongest winds in solar system (2,100 km/h), 1 large moon Triton (orbits backward)</td></tr>
+      </table>
+    </div>
+
+    <h4>Dwarf Planets & the Kuiper Belt</h4>
+    <p>Pluto was reclassified as a <strong>dwarf planet</strong> in 2006 by the IAU because it hasn't cleared its orbital neighborhood. Other dwarf planets include Eris, Ceres, Makemake, and Haumea. The <strong>Kuiper Belt</strong> is a disk of icy bodies beyond Neptune (~30–50 AU). The even more distant <strong>Oort Cloud</strong> is a spherical shell of icy objects that is the source of long-period comets.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ROTATION & REVOLUTION -->
+  <div class="topic" id="rotation">
+    <h3>Rotation and Revolution</h3>
+
+    <div class="card-grid">
+      <div class="mini-card"><strong>Rotation</strong><span>Spinning of a body on its own axis. Earth rotates once every 23 hours 56 minutes (a sidereal day). Causes day and night.</span></div>
+      <div class="mini-card"><strong>Revolution</strong><span>Orbital motion of one body around another. Earth revolves around the Sun in 365.25 days (1 year). Causes the seasons and the year.</span></div>
+    </div>
+
+    <h4>The Seasons</h4>
+    <p>Seasons are caused by Earth's <strong>axial tilt of 23.5°</strong> — NOT by distance from the Sun. When the Northern Hemisphere is tilted toward the Sun, it experiences summer (more direct sunlight, longer days). When tilted away, it's winter.</p>
+    <div class="card">
+      <table class="sci-table">
+        <tr><th>Event</th><th>Date (approx.)</th><th>What Happens</th></tr>
+        <tr><td>Summer Solstice (N.H.)</td><td>June 21</td><td>Longest day, shortest night; Sun highest in sky; Northern Hemisphere tilted most toward Sun</td></tr>
+        <tr><td>Winter Solstice (N.H.)</td><td>December 21</td><td>Shortest day, longest night; Sun lowest in sky; Northern Hemisphere tilted most away from Sun</td></tr>
+        <tr><td>Vernal (Spring) Equinox</td><td>March 20</td><td>Equal day and night (~12 hrs each); Sun directly over equator</td></tr>
+        <tr><td>Autumnal Equinox</td><td>September 22</td><td>Equal day and night; Sun directly over equator</td></tr>
+      </table>
+    </div>
+
+    <h4>Coriolis Effect</h4>
+    <p>Earth's rotation causes moving objects (air, water) to be deflected to the right in the Northern Hemisphere and to the left in the Southern Hemisphere. This creates the curved paths of winds and ocean currents, and causes hurricanes and cyclones to spin in opposite directions in each hemisphere.</p>
+
+    <div class="fact-box"><strong>⭐ Perihelion and Aphelion:</strong> Earth is actually closest to the Sun (perihelion, ~147 million km) in early January, and farthest (aphelion, ~152 million km) in early July — proving that distance from the Sun does NOT cause our seasons.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- COMETS & ASTEROIDS -->
+  <div class="topic" id="comets">
+    <h3>Comets and Asteroids</h3>
+
+    <h4>Comets</h4>
+    <p>Comets are icy, rocky bodies that orbit the Sun in elongated elliptical orbits. They originate from the Kuiper Belt (short-period comets, &lt;200 year periods) or the Oort Cloud (long-period comets, thousands of years).</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Nucleus</strong><span>Solid core of ice, dust, rock, and frozen gases (CO₂, CH₄, NH₃). Size: a few km to tens of km.</span></div>
+      <div class="mini-card"><strong>Coma</strong><span>Fuzzy atmosphere of gas and dust surrounding the nucleus as it approaches the Sun and ice sublimates.</span></div>
+      <div class="mini-card"><strong>Ion Tail</strong><span>Always points directly away from the Sun (solar wind pushes it). Bluish, made of ionized gas.</span></div>
+      <div class="mini-card"><strong>Dust Tail</strong><span>Curved tail made of dust particles. Points away from Sun but follows orbit path slightly. Yellowish-white.</span></div>
+    </div>
+
+    <p><strong>Famous Comets:</strong> Halley's Comet (appears every ~75 years; last seen 1986, next 2061), Hale-Bopp (1997 — one of the brightest of the 20th century), Comet NEOWISE (2020).</p>
+
+    <h4>Meteor Showers</h4>
+    <p>When Earth passes through a comet's debris trail, particles burn up in the atmosphere creating <strong>meteor showers</strong>. Famous showers include the Perseids (August, from Comet Swift-Tuttle), Leonids (November, from Comet Tempel-Tuttle), and Geminids (December).</p>
+
+    <h4>Asteroids</h4>
+    <p>Asteroids are rocky, metallic, or carbonaceous bodies orbiting the Sun, mostly found in the <strong>Asteroid Belt</strong> between Mars and Jupiter (~2.2–3.2 AU from Sun). They are leftover material from the solar system's formation that Jupiter's gravity prevented from forming a planet.</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>C-type (Carbonaceous)</strong><span>Most common (~75%). Dark, carbon-rich. Similar composition to the early solar nebula.</span></div>
+      <div class="mini-card"><strong>S-type (Silicaceous)</strong><span>~17% of asteroids. Made of silicate minerals and metal. Common in inner asteroid belt.</span></div>
+      <div class="mini-card"><strong>M-type (Metallic)</strong><span>Iron-nickel composition. May be cores of destroyed protoplanets. Target of mining missions.</span></div>
+    </div>
+
+    <h4>Near-Earth Objects & Meteorites</h4>
+    <p>Asteroids whose orbits bring them close to Earth are called Near-Earth Objects (NEOs). When a fragment enters Earth's atmosphere it's a <strong>meteor</strong> (shooting star). If it reaches the ground, it's a <strong>meteorite</strong>. The K-Pg extinction (65 million years ago, end of dinosaurs) is linked to a ~10 km asteroid impact at Chicxulub, Mexico.</p>
+
+    <div class="key-box"><strong>Key Terms:</strong> Meteoroid = space rock in space | Meteor = burning up in atmosphere | Meteorite = reached Earth's surface</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PHASES OF THE MOON -->
+  <div class="topic" id="moon">
+    <h3>Phases of the Moon</h3>
+
+    <p>The Moon's phases result from its position relative to Earth and the Sun as it orbits Earth. The Moon doesn't produce its own light — we see reflected sunlight. One complete cycle of phases takes ~29.5 days (a synodic month).</p>
+
+    <h4>The 8 Phases</h4>
+    <div class="card">
+      <table class="sci-table">
+        <tr><th>Phase</th><th>Appearance</th><th>Description</th></tr>
+        <tr><td>🌑 New Moon</td><td>Not visible</td><td>Moon between Earth and Sun; far side illuminated; dark side faces Earth</td></tr>
+        <tr><td>🌒 Waxing Crescent</td><td>Thin sliver on right</td><td>Small lit portion growing; visible in evening western sky</td></tr>
+        <tr><td>🌓 First Quarter</td><td>Right half lit</td><td>Moon 90° east of Sun; rises at noon, sets at midnight</td></tr>
+        <tr><td>🌔 Waxing Gibbous</td><td>More than half lit</td><td>Growing toward full; visible most of the night</td></tr>
+        <tr><td>🌕 Full Moon</td><td>Fully lit</td><td>Earth between Moon and Sun; entire face lit; rises at sunset, sets at sunrise</td></tr>
+        <tr><td>🌖 Waning Gibbous</td><td>Mostly lit, shrinking</td><td>After full; illumination decreasing; rises after sunset</td></tr>
+        <tr><td>🌗 Last Quarter</td><td>Left half lit</td><td>Moon 90° west of Sun; rises at midnight, sets at noon</td></tr>
+        <tr><td>🌘 Waning Crescent</td><td>Thin sliver on left</td><td>Nearly new again; visible just before sunrise in eastern sky</td></tr>
+      </table>
+    </div>
+
+    <h4>Tides</h4>
+    <p>Tides are periodic rises and falls of sea levels caused by the gravitational pull of the Moon (primarily) and the Sun on Earth's oceans. The Moon pulls water toward it on the side facing the Moon and also on the opposite side due to inertia, creating two tidal bulges.</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Spring Tides</strong><span>Occur at New Moon and Full Moon when Sun, Earth, and Moon align. Strongest tides — highest high tides, lowest low tides.</span></div>
+      <div class="mini-card"><strong>Neap Tides</strong><span>Occur at First and Last Quarter when Sun and Moon are at 90° to each other. Weakest tides — moderate highs and lows.</span></div>
+    </div>
+
+    <h4>Synchronous Rotation (Tidal Locking)</h4>
+    <p>The Moon rotates on its axis in exactly the same time it takes to orbit Earth (~27.3 days). This means we always see the same side of the Moon (the near side). This is called <strong>tidal locking</strong> and occurred over billions of years due to Earth's gravitational pull.</p>
+
+    <div class="fact-box"><strong>⭐ The Moon is moving away</strong> from Earth at about 3.8 cm per year due to tidal interactions. When the Moon formed ~4.5 billion years ago, it was much closer (resulting in much stronger tides and shorter days on Earth).</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SOLAR & LUNAR ECLIPSES -->
+  <div class="topic" id="eclipses">
+    <h3>Solar and Lunar Eclipses</h3>
+
+    <p>Eclipses occur when the Sun, Earth, and Moon align precisely. They don't happen every month because the Moon's orbit is tilted ~5° relative to Earth's orbit around the Sun.</p>
+
+    <h4>Solar Eclipse</h4>
+    <p>A solar eclipse occurs at <strong>New Moon</strong> when the Moon passes directly between the Sun and Earth, blocking sunlight from reaching parts of Earth.</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Total Solar Eclipse</strong><span>Moon completely covers the Sun. Only visible from within the Moon's umbra (darkest shadow). The Sun's corona becomes visible. Lasts up to ~7 minutes.</span></div>
+      <div class="mini-card"><strong>Partial Solar Eclipse</strong><span>Only part of the Sun is blocked by the Moon. Visible from the penumbra (partial shadow). Much larger area experiences this.</span></div>
+      <div class="mini-card"><strong>Annular Solar Eclipse</strong><span>Moon is at apogee (farthest from Earth) and appears smaller. A ring ("annulus") of sunlight surrounds the Moon. "Ring of Fire."</span></div>
+    </div>
+
+    <div class="key-box"><strong>Warning:</strong> Never look directly at the Sun during a solar eclipse without proper eclipse glasses (ISO 12312-2 certified). Even a small exposed sliver of the Sun can cause permanent eye damage (solar retinopathy).</div>
+
+    <h4>Lunar Eclipse</h4>
+    <p>A lunar eclipse occurs at <strong>Full Moon</strong> when Earth passes directly between the Sun and Moon, casting Earth's shadow onto the Moon. Visible from any location on Earth where the Moon is above the horizon.</p>
+    <div class="card-grid">
+      <div class="mini-card"><strong>Total Lunar Eclipse</strong><span>Moon passes completely into Earth's umbra. Moon turns red/orange ("Blood Moon") — caused by sunlight refracted through Earth's atmosphere (same effect as sunsets).</span></div>
+      <div class="mini-card"><strong>Partial Lunar Eclipse</strong><span>Only part of the Moon enters Earth's umbra. Part of the Moon darkens noticeably.</span></div>
+      <div class="mini-card"><strong>Penumbral Lunar Eclipse</strong><span>Moon passes through Earth's penumbra (outer shadow). Subtle darkening; often hard to notice. Most common type.</span></div>
+    </div>
+
+    <h4>Why Eclipses Aren't Monthly</h4>
+    <p>If the Moon's orbit were perfectly aligned with Earth's orbit around the Sun (the ecliptic), we would have both a solar and a lunar eclipse every month. However, the Moon's orbit is tilted ~5.1° to the ecliptic. Eclipses only occur when the Moon is at or near one of the two <strong>nodes</strong> (intersection points of the orbital planes) while also at New or Full Moon phase. These conditions align only about twice per year, resulting in <strong>eclipse seasons</strong>.</p>
+
+    <div class="fact-box"><strong>⭐ Saros Cycle:</strong> Eclipses repeat in a pattern every 18 years, 11 days, and 8 hours, known as the Saros cycle. Ancient astronomers used this to predict eclipses thousands of years ago before understanding why they occur.</div>
+
+    <h4>Summary Comparison</h4>
+    <div class="card">
+      <table class="sci-table">
+        <tr><th></th><th>Solar Eclipse</th><th>Lunar Eclipse</th></tr>
+        <tr><td>Moon Phase</td><td>New Moon</td><td>Full Moon</td></tr>
+        <tr><td>Alignment</td><td>Moon between Sun & Earth</td><td>Earth between Sun & Moon</td></tr>
+        <tr><td>Visibility</td><td>Narrow path on Earth</td><td>Anywhere Moon is visible</td></tr>
+        <tr><td>Duration</td><td>Minutes (totality)</td><td>Up to ~100 minutes (totality)</td></tr>
+        <tr><td>Safe to view?</td><td>Requires eclipse glasses</td><td>Safe with naked eye</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="font-size:28px;margin-bottom:14px;">🌍 ✨ 🔭</div>
+    <strong style="color: var(--cyan);">Complete Science Reviewer</strong><br>
+    Earth Science & Astronomy — All Topics Covered<br>
+    <span style="font-size:11px;opacity:0.5;margin-top:8px;display:block;">Study well. The universe is waiting to be understood.</span>
+  </footer>
+
+</div>
+</body>
+</html>
